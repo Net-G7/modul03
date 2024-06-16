@@ -6,7 +6,7 @@ namespace EmployeeManagement.Data;
 
 public class EmployeeData
 {
-    private const string PATH = @"C:\Users\user\Desktop\G7\modul03\EmployeeManagement\EmployeeManagement\Data\employees.json";
+    private const string PATH = @"C:\Users\Shokhruz\Desktop\modul03\EmployeeManagement\EmployeeManagement\Data\employees.json";
 
     private static JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
     {
