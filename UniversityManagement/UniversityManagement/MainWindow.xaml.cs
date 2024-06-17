@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UniversityManagement.Views;
 
 namespace UniversityManagement
 {
@@ -19,6 +20,12 @@ namespace UniversityManagement
         public MainWindow()
         {
             InitializeComponent();
+        }
+        
+        private void University_Clicked(object sender, RoutedEventArgs e)
+        {
+            UniversityWindow universityWindow = new UniversityWindow();
+            universityWindow.Show();
         }
     }
 }
