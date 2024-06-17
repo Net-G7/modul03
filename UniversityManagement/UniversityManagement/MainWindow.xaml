@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UniversityManagement"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="UniversityManagement" Height="450" Width="800">
     <Grid>
-
+        <Button 
+        Background="Blue" 
+        Width="200" 
+        Height="50"
+        Content="University"
+        Foreground="White"
+        FontSize="20"
+        BorderThickness="2"
+        BorderBrush="GreenYellow" 
+        Click="University_Clicked"/>
     </Grid>
 </Window>
