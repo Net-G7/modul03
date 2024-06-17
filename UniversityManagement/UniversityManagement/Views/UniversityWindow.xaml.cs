@@ -57,8 +57,8 @@ namespace UniversityManagement.Views
             string jsonData = _httpClient.GetStringAsync(URL).Result;
 
             var desJsonData = JsonSerializer.Deserialize<Response>(jsonData, jsonSerializerOptions);
-            ;
-            return desJsonData.University;
+            
+            return desJsonData;
         }
 
         private void Delete_Clicked(object sender, RoutedEventArgs e)

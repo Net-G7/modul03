@@ -10,7 +10,7 @@ namespace EmployeeManagement.Views
     public partial class EmployeeDialog : Window
     {
         private List<Employee> employees;
-       
+               
         public EmployeeDialog()
         {
             InitializeComponent(); 
@@ -39,6 +39,10 @@ namespace EmployeeManagement.Views
             EmployeeData.WriteEmployeesToFile(employees);
 
             idTextBox.Text = null;
+            nameTextBox.Text = null;
+            ageTextBox.Text = null;
+            salaryTextBox.Text = null;
+            profileImageTextBox.Text = null;
         }
     }
 }
