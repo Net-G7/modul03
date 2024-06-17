@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Windows;
+using UniversityManagement.Data;
 using UniversityManagement.Models;
 
 namespace UniversityManagement.Views;
@@ -13,12 +14,7 @@ public partial class UniversityWindow : Window
 {
     private readonly HttpClient _httpClient;
     private const string URL = "http://universities.hipolabs.com/search?&country=china";
-    public string PATH = @"C:\Users\Shokhruz\Desktop\modul03\UniversityManagement\UniversityManagement\Data\universities.json";
-
-    private static JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
-    {
-        PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
-    };
+    
 
     private List<University> universities;
     public UniversityWindow()
@@ -27,12 +23,12 @@ public partial class UniversityWindow : Window
 
         _httpClient = new HttpClient();
 
-        var storedUniversities = ReadUniversitiesFromFile();
+        var storedUniversities = UniversityData.ReadUniversitiesFromFile();
 
         if (storedUniversities.Count() == 0)
         {
             universities = PopulateData();
-            WriteUniversitiesToFile();
+            UniversityData.WriteUniversitiesToFile(universities);
         }
         else
         {
@@ -50,26 +46,6 @@ public partial class UniversityWindow : Window
         var deserializedData = JsonSerializer.Deserialize<List<University>>(jsonData);
 
         return deserializedData;
-    }
-
-    private List<University> ReadUniversitiesFromFile()
-    {
-        using (StreamReader streamReader = new StreamReader(PATH))
-        {
-            string storedData = streamReader.ReadToEnd();
-            var storedUniversities = JsonSerializer.Deserialize<List<University>>(storedData);
-            return storedUniversities;
-        }
-    }
-
-    public void WriteUniversitiesToFile()
-    {
-        using (StreamWriter streamWriter = new StreamWriter(PATH))
-        {
-            var jsonData = JsonSerializer.Serialize(universities, jsonSerializerOptions);
-
-            streamWriter.Write(jsonData);
-        }
     }
 
     public void Search_University_Clicked(object sender, RoutedEventArgs e)
@@ -115,7 +91,7 @@ public partial class UniversityWindow : Window
         }
 
         universities.Remove(selectedUniversity);
-        WriteUniversitiesToFile();
+        UniversityData.WriteUniversitiesToFile(universities);
 
         universityDataGrid.ItemsSource = universities;
     }
