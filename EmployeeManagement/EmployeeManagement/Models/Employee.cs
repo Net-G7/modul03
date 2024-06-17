@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using EmployeeManagement.Modelsl;
+using System.Text.Json.Serialization;
 
 namespace EmployeeManagement.Models;
 
@@ -15,4 +16,7 @@ public class Employee
     [JsonPropertyName("employee_age")]
     public int? Age { get; set; }
     public string ProfileImage { get; set; }
+    public Gender Gender { get; set; } = Gender.UnKnown;
+    public DateTime? BirthDay { get; set; } = null;
+    public Country Citizenship { get; set; }
 }

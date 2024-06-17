@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EmployeeManagement.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="EmployeeDialog" Height="550" Width="900">
+        Title="EmployeeDialog" Height="680" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -16,7 +16,7 @@
 
         <StackPanel
             Grid.Column="0"
-            Margin="40 60 0 120">
+            Margin="40 40 0 120">
             
             <TextBlock 
                 Height="50"
@@ -59,13 +59,40 @@
                 Height="50" 
                 Margin="0 10 10 0"
                 Background="AliceBlue" />
+
+            <TextBlock 
+                Padding="10"
+                Text="Gender"
+                TextAlignment="Center"
+                FontSize="18"
+                Height="50"
+                Margin="0 10 10 0" 
+                Background="AliceBlue" />
             
+            <TextBlock 
+                Padding="10" 
+                Text="Citizenship" 
+                TextAlignment="Center"
+                FontSize="18"
+                Height="50" 
+                Margin="0 10 10 0" 
+                Background="AliceBlue" />
             
+            <TextBlock 
+                Padding="10" 
+                Text="Birth Day" 
+                TextAlignment="Center" 
+                FontSize="18" 
+                Height="50" 
+                Margin="0 10 10 0" 
+                Background="AliceBlue" />
+
+
         </StackPanel>
 
         <StackPanel
             Grid.Column="1" 
-            Margin="40 60 40 120">
+            Margin="40 40 40 120">
             <TextBox 
                 x:Name="idTextBox"
                 Height="50"
@@ -109,6 +136,29 @@
                 FontSize="18" 
                 TextAlignment="Center" 
                 Padding="10" />
+            <ComboBox 
+                x:Name="genderComboBox"
+                Margin="0 10 0 0" 
+                Height="50" 
+                Background="AliceBlue" 
+                FontSize="18"  
+                Padding="10" />
+            <ComboBox 
+                x:Name="citizenshipComboBox"
+                Margin="0 10 0 0" 
+                Height="50" 
+                Background="AliceBlue" 
+                FontSize="18" 
+                Padding="10" />
+
+            <DatePicker 
+                x:Name="birthDatePicker" 
+                Margin="0 10 0 0" 
+                Height="50" 
+                Background="AliceBlue" 
+                FontSize="18" 
+                Padding="10" />
+
         </StackPanel>
 
         <Button 
@@ -120,7 +170,7 @@
             Content="Save"
             FontSize="18"
             Width="130"
-            Margin="0 0 0 60"
+            Margin="0 0 0 40"
             Background="GreenYellow"
             Click="Save_Clicked"
             />

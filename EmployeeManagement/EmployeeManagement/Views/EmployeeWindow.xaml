@@ -15,12 +15,16 @@
         <StackPanel
             Grid.Row="1">
             <DataGrid 
+                IsReadOnly="True"
+                MouseDoubleClick="employeeDataGrid_MouseDoubleClick"
+                CanUserResizeColumns="False"
+                CanUserResizeRows="False"
                 Margin="30"
                 Height="550"
                 BorderThickness="3"
                 x:Name="employeeDataGrid"
                 FontSize="17"
-                ColumnWidth="200"
+                ColumnWidth="180"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"/>
         </StackPanel>

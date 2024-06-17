@@ -104,4 +104,14 @@ public partial class EmployeeWindow : Window
 
             employeeDataGrid.ItemsSource = employees;   
     }
+
+    private void employeeDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        Employee employee = employeeDataGrid.SelectedItem as Employee;
+        EmployeeDialog employeeDialog = new EmployeeDialog(employee);
+        employeeDialog.ShowDialog();
+
+        employees = EmployeeData.ReadEmployeesFromFile();
+        employeeDataGrid.ItemsSource = employees;
+    }
 }
