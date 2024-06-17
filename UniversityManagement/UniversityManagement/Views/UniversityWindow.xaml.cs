@@ -69,7 +69,16 @@ public partial class UniversityWindow : Window
 
     public void Search_University_Clicked(object sender, RoutedEventArgs e)
     {
+        var searchedText = serchUniversityTextBox.Text;
 
+        var searchedEmployees = universities.Where(employee =>
+            employee.AlphaTwoCode.ToString().Contains(searchedText) ||
+            employee.Country.Contains(searchedText) ||
+            employee.Domains.ToString().Contains(searchedText) ||
+            employee.Name.ToString().Contains(searchedText) ||
+            employee.WebPages.Contains(searchedText));
+
+        universityDataGrid.ItemsSource = searchedEmployees;
     }
 
     public void Add_University_Click(object sender, RoutedEventArgs e)
