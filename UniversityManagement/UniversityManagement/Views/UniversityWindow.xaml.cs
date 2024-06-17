@@ -15,6 +15,11 @@ public partial class UniversityWindow : Window
     private const string URL = "http://universities.hipolabs.com/search?&country=china";
     public string PATH = @"C:\Users\Shokhruz\Desktop\modul03\UniversityManagement\UniversityManagement\Data\universities.json";
 
+    private static JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
+    };
+
     private List<University> universities;
     public UniversityWindow()
     {
@@ -61,7 +66,7 @@ public partial class UniversityWindow : Window
     {
         using (StreamWriter streamWriter = new StreamWriter(PATH))
         {
-            var jsonData = JsonSerializer.Serialize(universities);
+            var jsonData = JsonSerializer.Serialize(universities, jsonSerializerOptions);
 
             streamWriter.Write(jsonData);
         }
@@ -84,10 +89,34 @@ public partial class UniversityWindow : Window
     public void Add_University_Click(object sender, RoutedEventArgs e)
     {
 
+
     }
 
     public void Delete_University_Clicked(object sender, RoutedEventArgs e)
     {
+        University selectedUniversity = universityDataGrid.SelectedItem as University;
 
+        if (selectedUniversity is null)
+        {
+            MessageBox.Show("Item was not selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+
+        var messageBoxResult = MessageBox.Show(
+            "Do you want delete this item",
+            "Warning",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning);
+
+        if (messageBoxResult is MessageBoxResult.No)
+        {
+            return;
+        }
+
+        universities.Remove(selectedUniversity);
+        WriteUniversitiesToFile();
+
+        universityDataGrid.ItemsSource = universities;
     }
 }
