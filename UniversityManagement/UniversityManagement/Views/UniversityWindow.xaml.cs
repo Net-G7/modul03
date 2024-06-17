@@ -64,7 +64,8 @@ public partial class UniversityWindow : Window
 
     public void Add_University_Click(object sender, RoutedEventArgs e)
     {
-
+        UniversityDialog universityDialog = new UniversityDialog();
+        universityDialog.ShowDialog();
 
     }
 

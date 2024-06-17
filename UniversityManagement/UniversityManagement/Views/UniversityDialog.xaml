@@ -1,0 +1,144 @@
+﻿<Window x:Class="UniversityManagement.Views.UniversityDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UniversityManagement.Views"
+        mc:Ignorable="d"
+        Title="UniversityDialog" Height="600" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel
+            Grid.Column="0"
+            Margin="40 60 0 120">
+
+            <TextBlock 
+                Height="50"
+                Background="AliceBlue"
+                Text="Web Pages"
+                TextAlignment="Center"
+                Margin="0 0 10 0"
+                Padding="10"
+                FontSize="18"/>
+
+            <TextBlock 
+                Height="50" 
+                Background="AliceBlue" 
+                Text="University Name"
+                TextAlignment="Center"
+                Padding="10"
+                FontSize="18"
+                Margin="0 10 10 0"/>
+            <TextBlock 
+                Height="50" 
+                Margin="0 10 10 0"
+                Background="AliceBlue" 
+                Padding="10"
+                FontSize="18"
+                Text="State province"
+                TextAlignment="Center"/>
+            <TextBlock 
+                Padding="10"
+                Text="Alpha two code"
+                TextAlignment="Center"
+                FontSize="18"
+                Height="50" 
+                Margin="0 10 10 0"
+                Background="AliceBlue" />
+            <TextBlock 
+                Padding="10" 
+                Text="Domains" 
+                TextAlignment="Center" 
+                FontSize="18" 
+                Height="50" 
+                Margin="0 10 10 0"
+                Background="AliceBlue" />
+            <TextBlock 
+                Padding="10" 
+                Text="Country" 
+                TextAlignment="Center" 
+                FontSize="18" 
+                Height="50" 
+                Margin="0 10 10 0"
+                Background="AliceBlue" />
+            
+
+
+        </StackPanel>
+
+        <StackPanel
+            Grid.Column="1" 
+            Margin="40 60 40 120">
+            <TextBox 
+                x:Name="webPagesTextBox"
+                Height="50"
+                Background="AliceBlue"
+                FontSize="18"
+                TextAlignment="Center"
+                Padding="10"/>
+
+            <TextBox 
+                x:Name="nameTextBox"
+                Margin="0 10 0 0"
+                Height="50"
+                Background="AliceBlue" 
+                FontSize="18" 
+                TextAlignment="Center"
+                Padding="10" />
+
+            <TextBox 
+                x:Name="stateProvinceTextBox"
+                Margin="0 10 0 0"
+                Height="50" 
+                Background="AliceBlue" 
+                FontSize="18" 
+                TextAlignment="Center" 
+                Padding="10" />
+
+            <TextBox 
+                x:Name="AlphaTwoCodeTextBox"
+                Margin="0 10 0 0"
+                Height="50" 
+                Background="AliceBlue"
+                FontSize="18" 
+                TextAlignment="Center" 
+                Padding="10" />
+
+            <TextBox 
+                x:Name="domainsTextBox"
+                Margin="0 10 0 0"
+                Height="50" 
+                Background="AliceBlue" 
+                FontSize="18" 
+                TextAlignment="Center" 
+                Padding="10" />
+            <TextBox 
+                x:Name="countryTextBox"
+                Margin="0 10 0 0"
+                Height="50" 
+                Background="AliceBlue" 
+                FontSize="18" 
+                TextAlignment="Center" 
+                Padding="10" />
+        </StackPanel>
+
+        <Button 
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Center"
+            Height="50"
+            Content="Save"
+            FontSize="18"
+            Width="130"
+            Margin="0 0 0 60"
+            Background="GreenYellow"
+            Click="Save_University_Clicked"
+            />
+    </Grid>
+</Window>
