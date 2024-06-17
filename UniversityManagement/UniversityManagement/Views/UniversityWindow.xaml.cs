@@ -66,4 +66,19 @@ public partial class UniversityWindow : Window
             streamWriter.Write(jsonData);
         }
     }
+
+    public void Search_University_Clicked(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    public void Add_University_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    public void Delete_University_Clicked(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

@@ -24,5 +24,73 @@
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"/>
                 </StackPanel>
+        <Grid
+            Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                Grid.Column="1"
+                Width="160"
+                Height="60"
+                Background="Red"
+                Content="Delete"
+                FontSize="18"
+                BorderThickness="3"
+                Foreground="White"
+                BorderBrush="Blue"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Margin="150 0 0 40" 
+                Click="Delete_University_Clicked"/>
+
+            <Button 
+                Grid.Column="1" 
+                Width="160" 
+                Height="60" 
+                Background="Green"
+                Content="Add +" 
+                FontSize="18" 
+                BorderThickness="3"
+                Foreground="White" 
+                BorderBrush="Blue" 
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Right" 
+                Margin="0 0 170 40" 
+                Click="Add_University_Click"/>
+
+            <TextBox 
+                x:Name="serchUniversityTextBox"
+                BorderBrush="Green"
+                BorderThickness="3"
+                Background="Azure"
+                Foreground="Black"
+                Height="60"
+                Width="350"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Margin="50 0 0 40"
+                FontSize="18"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                />  
+
+            <Button 
+                BorderBrush="Blue"
+                BorderThickness="3"
+                Content="Search"
+                FontSize="18"
+                Foreground="Black"
+                Grid.Column="0"
+                Background="Gray"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Height="60"
+                Width="160"
+                Margin="0 0 120 40" 
+                Click="Search_University_Clicked"/>
+        </Grid>
     </Grid>
 </Window>
