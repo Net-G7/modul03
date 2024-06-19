@@ -20,5 +20,10 @@ namespace UniversityManagement
         {
             InitializeComponent();
         }
+        private void Universityclick(object sender, RoutedEventArgs e)
+        {
+            Universitywindow universitywindow = new Universitywindow();
+            universitywindow.Show();
+        }
     }
 }

@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Button
+     Background="Green"
+     Height="60"
+     Width="150"
+     Content="University"
+     Foreground="White"
+     FontSize="19"
+     BorderBrush="White"
+     BorderThickness="3"
+     Click="Universityclick"
+     />
     </Grid>
 </Window>
