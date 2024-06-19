@@ -65,7 +65,6 @@ public partial class UniversityWindow : Window
         UniversityDialog universityDialog = new UniversityDialog();
         universityDialog.ShowDialog();
 
-        universities = UniversityData.ReadUniversitiesFromFile();
         universityDataGrid.ItemsSource = universities;
     }
 
@@ -94,6 +93,15 @@ public partial class UniversityWindow : Window
         universities.Remove(selectedUniversity);
         UniversityData.WriteUniversitiesToFile(universities);
 
+        universityDataGrid.ItemsSource = universities;
+    }
+
+    private void universityDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        University university = universityDataGrid.SelectedItem as University;
+        UniversityDialog universityDialog = new UniversityDialog(university);
+        universityDialog.ShowDialog();
+        
         universityDataGrid.ItemsSource = universities;
     }
 }
