@@ -27,7 +27,7 @@ namespace UniversityManagement
 
         private List<University> university;
 
-        private const string url = "https://universities.hipolabs.com/search?&country=china";
+        private const string url = "http://universities.hipolabs.com/search?name=middle";
 
         private const string Path = @"C:\\Users\\HP\\Desktop\\modul03\\UniversityManagement\\UniversityManagement\\Data\\Universities.json";
         public Universitywindow()
@@ -89,6 +89,9 @@ namespace UniversityManagement
             }
         }
 
+
+
+
         private void Deleteclick(object sender, RoutedEventArgs e)
         {
 
@@ -96,6 +99,8 @@ namespace UniversityManagement
 
         private void Addclick(object sender, RoutedEventArgs e)
         {
+            Universitydialog universitydialog = new Universitydialog();
+            universitydialog.ShowDialog();
 
         }
 
