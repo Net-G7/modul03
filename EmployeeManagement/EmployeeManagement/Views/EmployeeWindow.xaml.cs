@@ -56,14 +56,37 @@ public partial class EmployeeWindow : Window
 
     private void Search_Employee_Clicked(object sender, RoutedEventArgs e)
     {
+
         var searchedText = serchTextBox.Text;
+
+        Predicate<Employee> predicate = delegate(Employee emp)
+        {
+            
+            if(emp.Citizenship is not null)
+            {
+                if (emp.Citizenship.Name.Contains(searchedText))
+                    return true;
+            }
+
+            else if(emp.BirthDay is not null)
+            {
+                if(emp.BirthDay.ToString().Contains(searchedText))
+                    return true;
+            }
+
+            return false;
+        };
 
         var searchedEmployees = employees.Where(employee => 
             employee.Id.ToString().Contains(searchedText) ||
             employee.Name.Contains(searchedText) ||
             employee.Salary.ToString().Contains(searchedText) ||
             employee.Age.ToString().Contains(searchedText) ||
-            employee.ProfileImage.Contains(searchedText));
+            employee.ProfileImage.Contains(searchedText) || 
+            employee.Gender.ToString().Contains(searchedText) ||
+            employee.Citizenship.Name.Contains(searchedText) || 
+            employee.BirthDay.ToString().Contains(searchedText) ||
+            predicate.Invoke(employee));
 
         employeeDataGrid.ItemsSource = searchedEmployees;
     }
