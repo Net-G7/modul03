@@ -34,9 +34,7 @@ public partial class UniversityWindow : Window
         {
             universities = storedUniversities;
         }
-
         universityDataGrid.ItemsSource = universities;
-
     }
 
     private List<University> PopulateData()
@@ -52,14 +50,14 @@ public partial class UniversityWindow : Window
     {
         var searchedText = serchUniversityTextBox.Text;
 
-        var searchedEmployees = universities.Where(employee =>
-            employee.AlphaTwoCode.ToString().Contains(searchedText) ||
-            employee.Country.Contains(searchedText) ||
-            employee.Domains.ToString().Contains(searchedText) ||
-            employee.Name.ToString().Contains(searchedText) ||
-            employee.WebPages.Contains(searchedText));
+        var searchedUniversity = universities.Where(university =>
+            university.AlphaTwoCode.ToString().Contains(searchedText) ||
+            university.Country.Contains(searchedText) ||
+            university.Domains.ToString().Contains(searchedText) ||
+            university.Name.ToString().Contains(searchedText) ||
+            university.WebPages.Contains(searchedText));
 
-        universityDataGrid.ItemsSource = searchedEmployees;
+        universityDataGrid.ItemsSource = searchedUniversity;
     }
 
     public void Add_University_Click(object sender, RoutedEventArgs e)
@@ -67,6 +65,8 @@ public partial class UniversityWindow : Window
         UniversityDialog universityDialog = new UniversityDialog();
         universityDialog.ShowDialog();
 
+        universities = UniversityData.ReadUniversitiesFromFile();
+        universityDataGrid.ItemsSource = universities;
     }
 
     public void Delete_University_Clicked(object sender, RoutedEventArgs e)

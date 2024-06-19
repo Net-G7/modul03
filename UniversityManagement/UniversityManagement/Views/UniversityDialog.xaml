@@ -101,7 +101,7 @@
                 Padding="10" />
 
             <TextBox 
-                x:Name="AlphaTwoCodeTextBox"
+                x:Name="alphaTwoCodeTextBox"
                 Margin="0 10 0 0"
                 Height="50" 
                 Background="AliceBlue"

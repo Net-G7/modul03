@@ -15,8 +15,8 @@
         <StackPanel
             Grid.Row="1">
             <DataGrid 
-                Margin="30"
-                Height="550"
+                Margin="25"
+                Height="500"
                 BorderThickness="3"
                 x:Name="universityDataGrid"
                 FontSize="17"

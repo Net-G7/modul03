@@ -19,7 +19,7 @@ public class EmployeeData
         {
             string storedJsonData = streamReader.ReadToEnd();
 
-            var storedEmployees = JsonSerializer.Deserialize<List<Employee>>(storedJsonData, jsonSerializerOptions);
+            var storedEmployees = JsonSerializer.Deserialize<List<Employee>>(storedJsonData, jsonSerializerOptions)!;
 
             return storedEmployees;
         }
