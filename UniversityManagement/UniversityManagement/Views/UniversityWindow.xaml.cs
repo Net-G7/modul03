@@ -14,7 +14,11 @@ public partial class UniversityWindow : Window
 {
     private readonly HttpClient _httpClient;
     private const string URL = "http://universities.hipolabs.com/search?&country=china";
-    
+
+    JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
+    };
 
     private List<University> universities;
     public UniversityWindow()
@@ -41,7 +45,7 @@ public partial class UniversityWindow : Window
     {
         string jsonData = _httpClient.GetStringAsync(URL).Result;
 
-        var deserializedData = JsonSerializer.Deserialize<List<University>>(jsonData);
+        var deserializedData = JsonSerializer.Deserialize<List<University>>(jsonData, jsonSerializerOptions);
 
         return deserializedData;
     }
