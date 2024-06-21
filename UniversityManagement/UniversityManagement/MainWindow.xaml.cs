@@ -19,9 +19,10 @@ namespace UniversityManagement
         {
             _httpClient = new HttpClient();
 
-            //universityDataGrid.ItemsSource = null;
-            //universityDataGrid.ItemsSource = LoadData();
             InitializeComponent();
+
+            universityDataGrid.ItemsSource = null;
+            universityDataGrid.ItemsSource = LoadData();
         }
 
         private List<University> LoadData(string searchText = "")
