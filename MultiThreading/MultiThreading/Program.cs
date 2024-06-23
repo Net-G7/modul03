@@ -1,97 +1,54 @@
-﻿namespace MultiThreading;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+
+namespace MultiThreading;
 
 internal class Program
 {
-    public delegate int Nimadir(int son1, int son2);
     static void Main(string[] args)
     {
         /// Main Thread
-        Thread.CurrentThread.Name = "Main Thread";
-
-        Console.WriteLine(Thread.CurrentThread.Name + "is started");
-
-        //Console.WriteLine("Method Main is started");
-
-
-        // ThreadStart threadStart = new ThreadStart(MethodA);
-        // ThreadStart threadStart = MethodA;
-
-        Operation operation = new Operation(
-            10,
-            new ReturtDataDelegate(
-                (int natija) =>
-                {
-                    Console.WriteLine($"Yig'indi = {natija}");
-                }));
-        
-        ThreadStart parameterizedThreadStart = new ThreadStart(operation.Method);
-
-        ReturtDataDelegate returtDataDelegate = delegate (int natija)
+        /// 
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+        for (int i = 0;i < 1000; i ++)
         {
-            Console.WriteLine($"Yig'indi {natija}");
-        };
-        ThreadStart threadStart = new Operation(15, returtDataDelegate).Method;
-        Thread workerThread1 = new Thread(parameterizedThreadStart)
+            ThreadPool.QueueUserWorkItem(new WaitCallback(PrintNumbers));
+          
+        }
+
+        stopwatch.Stop();
+
+        Console.WriteLine("thread pool : " + stopwatch.ElapsedTicks);
+
+        stopwatch.Restart();
+        for (long i = 0; i < 1000; i++)
         {
-            IsBackground = true,
-            Name = "Worker Thread 1"
-        };
+           Thread thread = new Thread(PrintNumbers);
+            thread.Start();
 
-        Thread workerThread2 = new Thread(new Operation(20, ReturnMethod).Method)
-        {
-            IsBackground = true,
-            Name = "Worker Thread 2"
-        };
+        }
+        stopwatch.Stop();
 
-        Thread workerThraed3 = new Thread(threadStart)
-        {
+        Console.WriteLine("thread with new " + stopwatch.ElapsedTicks);
 
-            IsBackground= fa,
-            Name = "Worker thread 3"
-        };
-
-        workerThread1.Start();
-        workerThread2.Start();
-        workerThraed3.Start();
-
-        //Console.WriteLine("Method Main is ended");
-
-        Console.WriteLine(Thread.CurrentThread.Name + "is ended");
+        Console.ReadLine();
 
     }
 
-    public static void ReturnMethod(int natija)
+    static void PrintNumbers(object? parametr)
     {
-        Console.WriteLine($"Yig'indi natija : {natija}");
+
+        //Console.WriteLine($"{Thread.CurrentThread.Name} {Thread.CurrentThread.ManagedThreadId}");
+        //Thread.Sleep(2000);
+
+        long sum = 0;
+        for(int i = 0;i < 10_000; i ++)
+        {
+            sum += i;
+        }
+        
     }
 
-    //static void MethodA(object? number)
-    //{
-    //    int son = (int)number;
-    //    for(int i = 0; i < son; i++)
-    //    {
-    //        Console.WriteLine(Thread.CurrentThread.Name + "   " + i);
-    //        Thread.Sleep(500);
-    //    }
-    //}
-
-    //static void MethodB(object? number)
-    //{
-    //    int son = (int)number;  
-    //    for (int i = 0; i < son; i++)
-    //    {
-    //        Console.WriteLine(Thread.CurrentThread.Name + "   " + i);
-    //        Thread.Sleep(500);
-    //    }
-    //}
-    
-    //static void MethodC(object? number)
-    //{
-    //    int son = (int)number;
-    //    for (int i = 0; i < son; i++)
-    //    {
-    //        Console.WriteLine(Thread.CurrentThread.Name + "   " + i);
-    //        Thread.Sleep(500);
-    //    }
-    //}
+   
 }

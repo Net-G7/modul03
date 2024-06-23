@@ -3,26 +3,21 @@
 public delegate void ReturtDataDelegate(int result);
 public class Operation
 {
-    public ReturtDataDelegate ReturtData;
-    public Operation(int number, ReturtDataDelegate returtData)
+    private object lockObject = new object();
+    public int AppleCount = 6;
+
+    public int GetAndKarsillatibEat(int count, int waitedMinutes)
     {
-        Number = number;
-        ReturtData = returtData;
-    }
-
-    public int Number { get; set; }
-
-
-    public void Method()
-    {
-        int sum = 0;
-        for (int i = 0; i < Number; i++)
+        lock(lockObject)
         {
-            Console.WriteLine(Thread.CurrentThread.Name + "   " + i);
-            sum += i;
-            Thread.Sleep(500);
-        }
+            if (AppleCount >= count)
+            {
+                Thread.Sleep(waitedMinutes);
+                AppleCount -= count;
+                return count;
+            }
 
-        ReturtData.Invoke(sum);
+            return AppleCount;
+        }
     }
 }
