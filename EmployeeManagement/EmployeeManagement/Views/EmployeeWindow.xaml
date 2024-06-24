@@ -19,14 +19,24 @@
                 MouseDoubleClick="employeeDataGrid_MouseDoubleClick"
                 CanUserResizeColumns="False"
                 CanUserResizeRows="False"
-                Margin="30"
-                Height="550"
+                Margin="30" Height="550"
                 BorderThickness="3"
-                x:Name="employeeDataGrid"
-                FontSize="17"
-                ColumnWidth="180"
+                x:Name="employeeDataGrid" 
+                FontSize="17" ColumnWidth="180"
                 HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"/>
+                VerticalContentAlignment="Center"
+                AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Number" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
+                    <DataGridTextColumn Header="Salary" Binding="{Binding Salary}"/>
+                    <DataGridTextColumn Header="Profile Image" Binding="{Binding ProfileImage}"/>
+                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}"/>
+                    <DataGridTextColumn Header="Birth date" Binding="{Binding BirthDate}"/>
+                    <DataGridTextColumn Header="Citizenship" Binding="{Binding Citizenship}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
 
         <Grid

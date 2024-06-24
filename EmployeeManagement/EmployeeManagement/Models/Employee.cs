@@ -18,5 +18,5 @@ public class Employee
     public string ProfileImage { get; set; }
     public Gender Gender { get; set; } = Gender.UnKnown;
     public DateTime? BirthDay { get; set; } = null;
-    public Country Citizenship { get; set; }
+    public Country? Citizenship { get; set; }
 }
