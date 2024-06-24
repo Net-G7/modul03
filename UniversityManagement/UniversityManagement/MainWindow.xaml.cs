@@ -21,11 +21,9 @@ namespace UniversityManagement
 
             InitializeComponent();
 
-            universityDataGrid.ItemsSource = null;
-            universityDataGrid.ItemsSource = LoadData();
         }
 
-        private List<University> LoadData(string searchText = "")
+        private async Task<List<University>> LoadData(string searchText = "")
         {
             var url = $"{BASE_URL}{searchText}";
 
@@ -34,7 +32,7 @@ namespace UniversityManagement
                 Content = new StringContent("", Encoding.UTF8, "application/json")
             };
 
-            var response = _httpClient.Send(httpRequest);
+            var response = await _httpClient.SendAsync(httpRequest);
 
             var stream = new StreamReader(response.Content.ReadAsStream());
 
@@ -46,6 +44,7 @@ namespace UniversityManagement
                 }
             };
 
+            await Task.Delay(10000);
             var universities = JsonConvert.DeserializeObject<List<University>>(
                 stream.ReadToEnd(),
                 serializerSettings);
@@ -54,6 +53,21 @@ namespace UniversityManagement
             return universities;
         }
 
-        
+        private async void University_Search_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            var search = universitySearchTextBox?.Text;
+
+            List<University> searchedUniversities = await LoadData(search);
+
+            universityDataGrid.ItemsSource = null;
+            universityDataGrid.ItemsSource = searchedUniversities;
+        }
+
+        private void dataTextBox_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var textBlock = dataTextBox.Text;
+
+            MessageBox.Show("Information",$"{textBlock}", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
