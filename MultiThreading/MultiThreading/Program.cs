@@ -10,12 +10,40 @@ namespace MultiThreading;
 internal class Program
 {
     static async Task Main(string[] args)
-    {
+    { 
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        List<Task<List<University>>> tasks = new List<Task<List<University>>>();
+        for(int i = 0; i < 100; i ++)
+        {
+            var result = GetUniversities();
+            tasks.Add(result);
+        }
 
-        GetUniversities();
+        await Task.WhenAll(tasks);
+
+        stopwatch.Stop();
+
+        Console.WriteLine(stopwatch.ElapsedTicks);
+
+        stopwatch.Restart();
+        //List<Task<List<University>>> tasks = new List<Task<List<University>>>();
+        for (int i = 0; i < 100; i++)
+        {
+            var result = await GetUniversities();
+            //tasks.Add(result);
+        }
+
+        await Task.WhenAll(tasks);
+
+        stopwatch.Stop();
+
+        Console.WriteLine(stopwatch.ElapsedTicks);
 
 
-        for(int i = 0; i < 20; i++)
+        await Console.Out.WriteLineAsync();
+
+
+        for (int i = 0; i < 20; i++)
         {
             Console.WriteLine(i);
         }
@@ -23,7 +51,7 @@ internal class Program
 
     }
 
-    private static async Task GetUniversities()
+    private static async Task<List<University>> GetUniversities()
     {
         string url = @"http://universities.hipolabs.com/search?country=uzbekistan";
 
@@ -36,7 +64,6 @@ internal class Program
 
         var response = await client.SendAsync(httpRequestMessage);
 
-        await Task.Delay(5000);
 
         var stream = new StreamReader(response.Content.ReadAsStream());
 
@@ -48,12 +75,13 @@ internal class Program
             }
         };
 
-        //var universities = JsonConvert.DeserializeObject<List<University>>(
-        //    stream.ReadToEnd(),
-        //    serializerSettings);
+        var universities = JsonConvert.DeserializeObject<List<University>>(
+            stream.ReadToEnd(),
+            serializerSettings);
 
-
-        
+        return universities;
     }
+
+
 
 }
