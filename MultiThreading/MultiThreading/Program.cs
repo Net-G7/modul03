@@ -1,54 +1,59 @@
-﻿using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Text;
 
 namespace MultiThreading;
 
 internal class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-        /// Main Thread
-        /// 
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.Start();
-        for (int i = 0;i < 1000; i ++)
+
+        GetUniversities();
+
+
+        for(int i = 0; i < 20; i++)
         {
-            ThreadPool.QueueUserWorkItem(new WaitCallback(PrintNumbers));
-          
+            Console.WriteLine(i);
         }
-
-        stopwatch.Stop();
-
-        Console.WriteLine("thread pool : " + stopwatch.ElapsedTicks);
-
-        stopwatch.Restart();
-        for (long i = 0; i < 1000; i++)
-        {
-           Thread thread = new Thread(PrintNumbers);
-            thread.Start();
-
-        }
-        stopwatch.Stop();
-
-        Console.WriteLine("thread with new " + stopwatch.ElapsedTicks);
-
         Console.ReadLine();
 
     }
 
-    static void PrintNumbers(object? parametr)
+    private static async Task GetUniversities()
     {
+        string url = @"http://universities.hipolabs.com/search?country=uzbekistan";
 
-        //Console.WriteLine($"{Thread.CurrentThread.Name} {Thread.CurrentThread.ManagedThreadId}");
-        //Thread.Sleep(2000);
+        HttpClient client = new HttpClient();
 
-        long sum = 0;
-        for(int i = 0;i < 10_000; i ++)
+        HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url)
         {
-            sum += i;
-        }
+            Content = new StringContent("", Encoding.UTF8, "application/json")
+        };
+
+        var response = await client.SendAsync(httpRequestMessage);
+
+        await Task.Delay(5000);
+
+        var stream = new StreamReader(response.Content.ReadAsStream());
+
+        JsonSerializerSettings serializerSettings = new JsonSerializerSettings()
+        {
+            ContractResolver = new DefaultContractResolver()
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            }
+        };
+
+        //var universities = JsonConvert.DeserializeObject<List<University>>(
+        //    stream.ReadToEnd(),
+        //    serializerSettings);
+
+
         
     }
 
-   
 }
