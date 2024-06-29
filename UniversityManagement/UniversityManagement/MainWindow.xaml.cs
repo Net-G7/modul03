@@ -25,34 +25,23 @@ namespace UniversityManagement
 
         }
 
-        private async Task<List<University>> LoadData(string searchText = "")
+        private async Task<List<Bankaccount>> LoadData(string searchText = "")
         {
-            var url = $"{BASE_URL}{searchText}";
+            HttpClient client = new HttpClient();
+            var url = "https://localhost:7090/BankAccount";
 
-            var httpRequest = new HttpRequestMessage(HttpMethod.Get, url)
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url)
             {
                 Content = new StringContent("", Encoding.UTF8, "application/json")
             };
 
-            var response = await _httpClient.SendAsync(httpRequest);
+            var response = await client.SendAsync(httpRequestMessage);
 
-            var stream = new StreamReader(response.Content.ReadAsStream());
+            var stringData = await response.Content.ReadAsStringAsync();
 
-            JsonSerializerSettings serializerSettings = new JsonSerializerSettings()
-            {
-                ContractResolver = new DefaultContractResolver()
-                {
-                    NamingStrategy = new SnakeCaseNamingStrategy()
-                }
-            };
+            var accounts = JsonConvert.DeserializeObject<List<Bankaccount>>(stringData);
 
-            await Task.Delay(10000);
-            var universities = JsonConvert.DeserializeObject<List<University>>(
-                stream.ReadToEnd(),
-                serializerSettings);
-
-
-            return universities;
+            return accounts;
         }
 
         private async void University_Search_Button_Clicked(object sender, RoutedEventArgs e)
@@ -88,5 +77,10 @@ namespace UniversityManagement
             progressBar.Visibility = Visibility.Visible;
             progressBar.Value = 100;
         }
+    }
+    internal class Bankaccount
+    {
+        public decimal Number { get; set; }
+        public string Name { get; set; }
     }
 }
