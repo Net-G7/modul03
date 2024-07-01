@@ -20,40 +20,31 @@ namespace UniversityManagement
             _httpClient = new HttpClient();
 
             InitializeComponent();
-
         }
-
         private async Task<List<University>> LoadData(string searchText = "")
         {
-            var url = $"{BASE_URL}{searchText}";
-
+            var url = $"{BASE_URL} {searchText}";
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, url)
             {
-                Content = new StringContent("", Encoding.UTF8, "application/json")
+                Content = new StringContent("",Encoding.UTF8, "application/json")
             };
 
             var response = await _httpClient.SendAsync(httpRequest);
 
             var stream = new StreamReader(response.Content.ReadAsStream());
 
-            JsonSerializerSettings serializerSettings = new JsonSerializerSettings()
+            JsonSerializerSettings SerializerSettings = new JsonSerializerSettings()
             {
                 ContractResolver = new DefaultContractResolver()
                 {
                     NamingStrategy = new SnakeCaseNamingStrategy()
                 }
             };
-
-            await Task.Delay(10000);
-            var universities = JsonConvert.DeserializeObject<List<University>>(
-                stream.ReadToEnd(),
-                serializerSettings);
-
-
+            await Task.Delay(1000);
+            var universities = JsonConvert.DeserializeObject<List<University>>(stream.ReadToEnd(), SerializerSettings);
             return universities;
         }
-
-        private async void University_Search_Button_Clicked(object sender, RoutedEventArgs e)
+        private async void universitySearchButton_Click(object sender, RoutedEventArgs e)
         {
             var search = universitySearchTextBox?.Text;
 
@@ -67,7 +58,7 @@ namespace UniversityManagement
         {
             var textBlock = dataTextBox.Text;
 
-            MessageBox.Show("Information",$"{textBlock}", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Information", $"{textBlock}", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

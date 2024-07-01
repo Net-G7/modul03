@@ -8,7 +8,6 @@
     mc:Ignorable="d" Title="MainWindow" Height="650" Width="1200">
     <Grid>
         <DockPanel>
-
             <Menu DockPanel.Dock="Top" Height="50">
 
                 <MenuItem Header="Close" Width="80" Height="50" FontSize="20" Margin="5 0 0 0">
@@ -16,15 +15,12 @@
                     <MenuItem Header="ikki"/>
                     <MenuItem Header="uch"/>
                 </MenuItem>
-
                 <MenuItem Header="Open Files" FontSize="20" />
 
                 <MenuItem Header="Edit" FontSize="20" Margin="14 0 0 0" />
 
                 <MenuItem Header="View" FontSize="20" Margin="14 0 0 0" />
-
             </Menu>
-
             <StatusBar DockPanel.Dock="Bottom" Height="50">
                 <Grid 
                     Height="50"
@@ -57,7 +53,6 @@
 
                 </Grid>
             </StatusBar>
-
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2.5*"/>
@@ -70,69 +65,53 @@
                         <RowDefinition Height="1.2*"/>
                         <RowDefinition Height="6.5*"/>
                     </Grid.RowDefinitions>
-
                     <GroupBox
                         Grid.Row="0"
-                        FontSize="15">
+                         FontSize="15">
                         <GroupBox.Header>University Search</GroupBox.Header>
 
                         <Grid>
                             <Grid.ColumnDefinitions>
-                               <ColumnDefinition Width="5*"/>
-                               <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
-
-                            <TextBox 
+                            <TextBox
                                 x:Name="universitySearchTextBox"
                                 Height="40"
                                 Width="400"
                                 Margin="10 5 20 0"
-                                FontSize="18"
                                 Padding="6"
                                 TextAlignment="Center"/>
-
-                            <Button 
-                                    x:Name="universitySearchButton"
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Left"
-                                    Width="100" 
-                                    Margin="0 5 20 0" 
-                                    Height="40"
-                                    Content="Search"
-                                    FontSize="18"
-                                    Background="Green"
-                                    Foreground="White"
-                                    Click="University_Search_Button_Clicked"
-                                    />
+                            <Button
+                               x:Name="universitySearchButton"
+                                Grid.Column="1"
+                                Width="100"
+                                Margin="0 5 20 0"
+                                Height="40"
+                                Content="Search"
+                                Background="Red"
+                               Click="universitySearchButton_Click"/>
                         </Grid>
                     </GroupBox>
-
-                    <DataGrid 
+                    <DataGrid
                         Grid.Row="1"
                         Padding="5"
-                        x:Name="universityDataGrid"
-                        />
+                        x:Name="universityDataGrid"/>
                 </Grid>
-
                 <Grid Grid.Column="1">
-                    <GroupBox 
-                        Margin="0 66 0 0"
-                        Header="Additional Data" 
-                        FontSize="18">
-
+                    <GroupBox
+                        Margin="0 66 0 0 ">
                     </GroupBox>
                 </Grid>
-
                 <Grid Grid.Column="2">
-                    <GroupBox Margin="0 66 0 0" Header="Data" FontSize="18">
-                        <TextBox 
+                    <GroupBox Margin="0 66 0 0" Header="Data" >
+                        <TextBox
                             x:Name="dataTextBox"
                             TextWrapping="Wrap"
                             MouseDoubleClick="dataTextBox_MouseDoubleClick"/>
                     </GroupBox>
                 </Grid>
             </Grid>
-
         </DockPanel>
     </Grid>
 </Window>
